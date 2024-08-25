@@ -1,0 +1,21 @@
+server:
+  port: 5003
+spring:
+  application:
+    name: SUBMISSION-SERVICE
+  # Configuracoes do banco de dados
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5434/task-submission-service
+    username: docker
+    password: docker
+
+  # Configuracoes do Hibernate e JPA
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true

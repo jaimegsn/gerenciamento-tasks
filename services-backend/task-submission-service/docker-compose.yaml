@@ -1,0 +1,26 @@
+version: '3.7' #Versão da Sintaxe do Docker Compose
+
+services: # Serviços que iremos disponibilzar, nesse caso 2
+  postgres: # Serviço 'postgres'
+    image: bitnami/postgresql:latest # Imagem do serviço
+    ports: # Exposição de porta desse serviço
+      - '5434:5432'
+    environment: # Definindo variáveis de ambiente necessárias
+      - POSTGRES_USER=docker # User do DB
+      - POSTGRES_PASSWORD=docker # Senha do DB
+      - POSTGRES_DB=task-submission-service # Nome do banco de dados
+    volumes: # Definindo volume para persistir os dados
+      - polls_pg_data:/bitnami/postgresql
+
+  redis: # Serviço 'redis'
+    image: bitnami/redis:latest # Imagem do serviço
+    environment: # Definindo variáveis de ambiente necessárias
+      - ALLOW_EMPTY_PASSWORD=yes
+    ports: # Exposição de porta desse serviço
+      - '6381:6379'
+    volumes: # Definindo volume para persistir os dados
+      - 'polls_redis_data:/bitnami/redis/data'
+
+volumes: # Sessão volumes para definir o diretório que iremos persistir os dados
+  polls_pg_data:
+  polls_redis_data:
