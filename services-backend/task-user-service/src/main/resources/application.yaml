@@ -1,0 +1,21 @@
+server:
+  port: 5001
+spring:
+  application:
+    name: USER-SERVICE
+# Configuracoes do banco de dados
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/task-user-service
+    username: docker
+    password: docker
+
+  # Configuracoes do Hibernate e JPA
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
