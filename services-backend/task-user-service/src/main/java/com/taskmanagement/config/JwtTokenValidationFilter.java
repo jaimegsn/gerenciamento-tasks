@@ -25,6 +25,15 @@ public class JwtTokenValidationFilter extends OncePerRequestFilter {
                                     HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
 
+
+        // Ignorar validação de token para o caminho /auth/**
+        String path = request.getRequestURI();
+        if (path.startsWith("/auth/")) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
+
         String jwt = request.getHeader(JwtConstant.JWT_HEADER);
         if(jwt!=null){
 //            Bearer jwt
